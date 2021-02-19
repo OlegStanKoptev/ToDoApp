@@ -7,19 +7,53 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC2652FE25DF262C008C9E63 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2652FD25DF262C008C9E63 /* BlurView.swift */; };
+		DC2C253225DDC86C006655F0 /* FilteredTasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2C253125DDC86C006655F0 /* FilteredTasksView.swift */; };
+		DC43C45E25DD82C000824CBD /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43C45D25DD82C000824CBD /* TasksView.swift */; };
+		DC43C46125DD82FD00824CBD /* TasksList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43C46025DD82FD00824CBD /* TasksList.swift */; };
+		DC43C46725DD8A0B00824CBD /* RemindersListProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43C46625DD8A0B00824CBD /* RemindersListProvider.swift */; };
+		DC43C46C25DDA3BC00824CBD /* TasksListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43C46B25DDA3BC00824CBD /* TasksListRow.swift */; };
+		DC6C051A25DE985A00EAA249 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6C051925DE985A00EAA249 /* HomeView.swift */; };
+		DC6C051E25DEA54A00EAA249 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6C051D25DEA54A00EAA249 /* SearchBar.swift */; };
+		DC6C052125DEAE2400EAA249 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6C052025DEAE2400EAA249 /* RoundedCorner.swift */; };
+		DC6C052925DEE28F00EAA249 /* CustomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6C052825DEE28F00EAA249 /* CustomScrollView.swift */; };
 		DC82741525DC6DAE009FFE12 /* ToDoAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC82741425DC6DAE009FFE12 /* ToDoAppApp.swift */; };
-		DC82741725DC6DAE009FFE12 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC82741625DC6DAE009FFE12 /* ContentView.swift */; };
 		DC82741925DC6DAF009FFE12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC82741825DC6DAF009FFE12 /* Assets.xcassets */; };
 		DC82741C25DC6DAF009FFE12 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC82741B25DC6DAF009FFE12 /* Preview Assets.xcassets */; };
+		DC82742825DC6E00009FFE12 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC82742725DC6E00009FFE12 /* Task.swift */; };
+		DC82742E25DC7044009FFE12 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC82742D25DC7044009FFE12 /* TaskRow.swift */; };
+		DC85642D25DFBCB90024F8AF /* ScrollableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC85642C25DFBCB90024F8AF /* ScrollableView.swift */; };
+		DC85643025DFBF160024F8AF /* TopFilteredLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC85642F25DFBF160024F8AF /* TopFilteredLists.swift */; };
+		DC85643325DFBF390024F8AF /* MyLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC85643225DFBF390024F8AF /* MyLists.swift */; };
+		DC85643725DFBF750024F8AF /* CustomNavigationBarWithSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC85643625DFBF750024F8AF /* CustomNavigationBarWithSearch.swift */; };
+		DC86A03625DFD78E00530F1B /* NeumorphicButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86A03525DFD78E00530F1B /* NeumorphicButtonStyle.swift */; };
+		DC8B14CB25DDB94A0023719A /* FilteredTasksButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B14CA25DDB94A0023719A /* FilteredTasksButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DC2652FD25DF262C008C9E63 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		DC2C253125DDC86C006655F0 /* FilteredTasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredTasksView.swift; sourceTree = "<group>"; };
+		DC43C45D25DD82C000824CBD /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
+		DC43C46025DD82FD00824CBD /* TasksList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksList.swift; sourceTree = "<group>"; };
+		DC43C46625DD8A0B00824CBD /* RemindersListProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersListProvider.swift; sourceTree = "<group>"; };
+		DC43C46B25DDA3BC00824CBD /* TasksListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListRow.swift; sourceTree = "<group>"; };
+		DC6C051925DE985A00EAA249 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		DC6C051D25DEA54A00EAA249 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		DC6C052025DEAE2400EAA249 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		DC6C052825DEE28F00EAA249 /* CustomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomScrollView.swift; sourceTree = "<group>"; };
 		DC82741125DC6DAE009FFE12 /* ToDoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC82741425DC6DAE009FFE12 /* ToDoAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoAppApp.swift; sourceTree = "<group>"; };
-		DC82741625DC6DAE009FFE12 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DC82741825DC6DAF009FFE12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC82741B25DC6DAF009FFE12 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DC82741D25DC6DAF009FFE12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC82742725DC6E00009FFE12 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		DC82742D25DC7044009FFE12 /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
+		DC85642C25DFBCB90024F8AF /* ScrollableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableView.swift; sourceTree = "<group>"; };
+		DC85642F25DFBF160024F8AF /* TopFilteredLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopFilteredLists.swift; sourceTree = "<group>"; };
+		DC85643225DFBF390024F8AF /* MyLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLists.swift; sourceTree = "<group>"; };
+		DC85643625DFBF750024F8AF /* CustomNavigationBarWithSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBarWithSearch.swift; sourceTree = "<group>"; };
+		DC86A03525DFD78E00530F1B /* NeumorphicButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicButtonStyle.swift; sourceTree = "<group>"; };
+		DC8B14CA25DDB94A0023719A /* FilteredTasksButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredTasksButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +67,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC0D846B25DC77E300DF970B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				DC6C052025DEAE2400EAA249 /* RoundedCorner.swift */,
+				DC6C052825DEE28F00EAA249 /* CustomScrollView.swift */,
+				DC2652FD25DF262C008C9E63 /* BlurView.swift */,
+				DC85642C25DFBCB90024F8AF /* ScrollableView.swift */,
+				DC86A03525DFD78E00530F1B /* NeumorphicButtonStyle.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		DC82740825DC6DAE009FFE12 = {
 			isa = PBXGroup;
 			children = (
@@ -52,8 +98,11 @@
 		DC82741325DC6DAE009FFE12 /* ToDoApp */ = {
 			isa = PBXGroup;
 			children = (
+				DC0D846B25DC77E300DF970B /* Utilities */,
+				DC82742625DC6DEE009FFE12 /* Models */,
+				DC82742525DC6DDC009FFE12 /* ViewModels */,
+				DC82742425DC6DC6009FFE12 /* Views */,
 				DC82741425DC6DAE009FFE12 /* ToDoAppApp.swift */,
-				DC82741625DC6DAE009FFE12 /* ContentView.swift */,
 				DC82741825DC6DAF009FFE12 /* Assets.xcassets */,
 				DC82741D25DC6DAF009FFE12 /* Info.plist */,
 				DC82741A25DC6DAF009FFE12 /* Preview Content */,
@@ -67,6 +116,56 @@
 				DC82741B25DC6DAF009FFE12 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DC82742425DC6DC6009FFE12 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DC6C051925DE985A00EAA249 /* HomeView.swift */,
+				DC8B14C725DDB6940023719A /* TasksListParts */,
+				DC43C45D25DD82C000824CBD /* TasksView.swift */,
+				DC8B14CD25DDBB690023719A /* TasksViewParts */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DC82742525DC6DDC009FFE12 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DC43C46625DD8A0B00824CBD /* RemindersListProvider.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DC82742625DC6DEE009FFE12 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DC82742725DC6E00009FFE12 /* Task.swift */,
+				DC43C46025DD82FD00824CBD /* TasksList.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DC8B14C725DDB6940023719A /* TasksListParts */ = {
+			isa = PBXGroup;
+			children = (
+				DC85643625DFBF750024F8AF /* CustomNavigationBarWithSearch.swift */,
+				DC6C051D25DEA54A00EAA249 /* SearchBar.swift */,
+				DC85642F25DFBF160024F8AF /* TopFilteredLists.swift */,
+				DC85643225DFBF390024F8AF /* MyLists.swift */,
+				DC43C46B25DDA3BC00824CBD /* TasksListRow.swift */,
+				DC8B14CA25DDB94A0023719A /* FilteredTasksButton.swift */,
+				DC2C253125DDC86C006655F0 /* FilteredTasksView.swift */,
+			);
+			path = TasksListParts;
+			sourceTree = "<group>";
+		};
+		DC8B14CD25DDBB690023719A /* TasksViewParts */ = {
+			isa = PBXGroup;
+			children = (
+				DC82742D25DC7044009FFE12 /* TaskRow.swift */,
+			);
+			path = TasksViewParts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +237,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC82741725DC6DAE009FFE12 /* ContentView.swift in Sources */,
+				DC85643725DFBF750024F8AF /* CustomNavigationBarWithSearch.swift in Sources */,
+				DC82742E25DC7044009FFE12 /* TaskRow.swift in Sources */,
+				DC2652FE25DF262C008C9E63 /* BlurView.swift in Sources */,
+				DC85643025DFBF160024F8AF /* TopFilteredLists.swift in Sources */,
+				DC6C052925DEE28F00EAA249 /* CustomScrollView.swift in Sources */,
+				DC43C46725DD8A0B00824CBD /* RemindersListProvider.swift in Sources */,
+				DC8B14CB25DDB94A0023719A /* FilteredTasksButton.swift in Sources */,
+				DC43C45E25DD82C000824CBD /* TasksView.swift in Sources */,
+				DC6C052125DEAE2400EAA249 /* RoundedCorner.swift in Sources */,
+				DC43C46125DD82FD00824CBD /* TasksList.swift in Sources */,
+				DC6C051E25DEA54A00EAA249 /* SearchBar.swift in Sources */,
+				DC6C051A25DE985A00EAA249 /* HomeView.swift in Sources */,
+				DC85642D25DFBCB90024F8AF /* ScrollableView.swift in Sources */,
+				DC43C46C25DDA3BC00824CBD /* TasksListRow.swift in Sources */,
+				DC82742825DC6E00009FFE12 /* Task.swift in Sources */,
+				DC86A03625DFD78E00530F1B /* NeumorphicButtonStyle.swift in Sources */,
+				DC2C253225DDC86C006655F0 /* FilteredTasksView.swift in Sources */,
+				DC85643325DFBF390024F8AF /* MyLists.swift in Sources */,
 				DC82741525DC6DAE009FFE12 /* ToDoAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

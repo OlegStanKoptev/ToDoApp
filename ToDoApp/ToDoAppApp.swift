@@ -11,7 +11,10 @@ import SwiftUI
 struct ToDoAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                HomeView()
+                    .environmentObject(TasksListProvider())
+            }
         }
     }
 }
