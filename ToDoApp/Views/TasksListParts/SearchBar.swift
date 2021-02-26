@@ -24,7 +24,7 @@ struct SearchBar: View {
         HStack {
             RoundedRectangle(cornerRadius: 8)
                 .foregroundColor(Color("searchBar"))
-                .frame(height: editing ? 36 : barHeight)
+                .frame(height: editing || !query.isEmpty ? 36 : barHeight)
                 .overlay(
                     HStack {
                         Image(systemName: "magnifyingglass")
@@ -35,7 +35,7 @@ struct SearchBar: View {
                                     editing = isEditing
                                 }
                             }, onCommit: { print("search commit") })
-                        if (query != "") {
+                        if (!query.isEmpty) {
                             Button(action: {
                                 self.query = ""
                             }) {
@@ -45,11 +45,11 @@ struct SearchBar: View {
                             }
                         }
                     }
-                    .opacity(editing ? 1 : Double(textOpacity))
+                    .opacity(editing || !query.isEmpty ? 1 : Double(textOpacity))
                 )
                 .padding(.horizontal, 4)
             
-            if editing {
+            if editing || !query.isEmpty {
                 Button(action: {
                     withAnimation {
                         self.editing = false

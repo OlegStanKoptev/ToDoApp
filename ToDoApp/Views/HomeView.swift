@@ -9,23 +9,16 @@ import SwiftUI
 import Combine
 
 struct HomeView: View {
-    @EnvironmentObject var provider: TasksListProvider
+    @EnvironmentObject var context: AppContext
     @State var searchQuery = ""
     @State var enteringQuery = false
-    @State var offset: CGFloat = 0
+    @State var topOffset: CGFloat = 0
+    @State var bottomOffset: CGFloat = 0
+    @State var bottomSafeAreaHeight: CGFloat = 0
     
     let detector: CurrentValueSubject<CGFloat, Never>
     let publisher: AnyPublisher<CGFloat, Never>
     
-    var bottomBarBackgroundOpacity: Double {
-        let bottomLine = 448 + provider.lists.count * 54 + Int(offset)
-        if offset == 0 {
-            return Double(bottomLine > Int(UIScreen.main.bounds.height) ? 1 : 0)
-        }
-        let difference = Int(UIScreen.main.bounds.height) - bottomLine
-        return difference <= 16 ? 1 : 0
-    }
-
     init() {
         let detector = CurrentValueSubject<CGFloat, Never>(0)
         self.publisher = detector
@@ -41,7 +34,8 @@ struct HomeView: View {
                 CustomScrollView(
                     axes: .vertical,
                     showsIndicators: false,
-                    offsetChanged: { offset = $0.y; detector.send($0.y) }) {
+                    topOffsetChanged: { topOffset = $0; detector.send($0) },
+                    bottomOffsetChanged: { bottomOffset = $0 }) {
                     Color.clear
                         .frame(height: enteringQuery ? 10 : 37)
                         .id(0)
@@ -55,7 +49,7 @@ struct HomeView: View {
                     Color.clear
                         .frame(height: 50)
                 }
-                .onReceive(publisher) { _ in
+                .onReceive(publisher) { offset in
                     withAnimation {
                         if offset < 0 && offset >= -30 {
                             scrollViewProxy.scrollTo(0, anchor: .bottom)
@@ -73,40 +67,46 @@ struct HomeView: View {
                 .padding(.horizontal, 16)
             }
             
-            VStack {
-                CustomNavigationBarWithSearch(offset: $offset, searchQuery: $searchQuery, enteringQuery: $enteringQuery)
+            VStack(spacing: 0) {
+                CustomNavigationBarWithSearch(offset: $topOffset, searchQuery: $searchQuery, enteringQuery: $enteringQuery)
+                
+                if !searchQuery.isEmpty {
+                    SearchResult(searchQuery: $searchQuery, enteringQuery: $enteringQuery)
+                }
                 
                 Spacer()
                 
-                if !enteringQuery {
-                    HStack {
-                        Button(action: {}, label: {
-                            HStack(spacing: 8) {
-                                Image(systemName: "plus.circle.fill")
-                                    .font(.system(size: 26, weight: .bold, design: .rounded))
-                                Text("New Reminder")
-                                    .font(.system(size: 17, weight: .bold, design: .rounded))
-                            }
-                        })
-                        Spacer()
-                        Button(action: {}, label: {
-                            Text("Add List")
-                        })
-                    }
-                    .padding(.top, 10)
-                    .padding(.horizontal, 16)
-                    .frame(height: 46)
-                    .background(
-                        BlurView()
-                            .overlay(VStack {
-                                Divider()
-                                Spacer()
-                            })
-                            .edgesIgnoringSafeArea(.all)
-                            .opacity(bottomBarBackgroundOpacity)
-                    )
-                    .transition(.move(edge: .bottom))
-                }
+//                if !enteringQuery {
+//                    HStack {
+//                        Button(action: { }, label: {
+//                            HStack(spacing: 8) {
+//                                Image(systemName: "plus.circle.fill")
+//                                    .font(.system(size: 26, weight: .bold, design: .rounded))
+//                                Text("New Reminder")
+//                                    .font(.system(size: 17, weight: .bold, design: .rounded))
+//                            }
+//                        })
+//                        Spacer()
+//                        Button(action: { }, label: {
+//                            Text("Add List")
+//                        })
+//                    }
+//                    .padding(.top, 10)
+//                    .padding(.horizontal, 16)
+//                    .frame(height: 46)
+//                    .background(
+//                        GeometryReader { geo in
+//                            BlurView()
+//                                .overlay(VStack {
+//                                    Divider()
+//                                    Spacer()
+//                                })
+//                                .edgesIgnoringSafeArea(.all)
+//                                .opacity(bottomOffset - 14 > geo.frame(in: .global).origin.y ? 1 : 0)
+//                        }
+//                    )
+//                    .transition(.move(edge: .bottom))
+//                }
             }
             .ignoresSafeArea(.keyboard, edges: .all)
         }
@@ -126,7 +126,7 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             HomeView()
-                .environmentObject(TasksListProvider())
+                .environmentObject(AppContext())
 //            ForEach(verticalLines, id: \.self) { line in
 //                Divider()
 //                    .frame(width: UIScreen.main.bounds.width)
@@ -134,5 +134,42 @@ struct HomeView_Previews: PreviewProvider {
 //                              y: CGFloat(line - 40))
 //            }
         }
+    }
+}
+
+struct SearchResult: View {
+    @EnvironmentObject var context: AppContext
+    @Binding var searchQuery: String
+    @Binding var enteringQuery: Bool
+    var body: some View {
+        CustomScrollView(axes: .vertical, showsIndicators: true, topOffsetChanged: { _ in }, bottomOffsetChanged: { _ in }) {
+            ForEach(context.lists, id: \.id) { list in
+                if list.tasks.count != 0 &&
+                    list.tasks.contains(where: { task in task.task.title!.lowercased().contains(searchQuery.lowercased().trimmingCharacters(in: .whitespaces)) ||
+                                            task.task.note != nil &&
+                                            task.task.note!.lowercased().contains(searchQuery.lowercased().trimmingCharacters(in: .whitespaces)) })
+                {
+                    HStack {
+                        Text(list.title)
+                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                            .foregroundColor(Color(list.color.rawValue))
+                        Spacer(minLength: 0)
+                    }
+                    .padding(.horizontal, 16)
+                    ForEach(list.tasks, id: \.task.id) { taskViewModel in
+                        Group {
+                            if taskViewModel.task.title!.lowercased().contains(searchQuery.lowercased().trimmingCharacters(in: .whitespaces)) ||
+                                taskViewModel.task.note != nil &&
+                                taskViewModel.task.note!.lowercased().contains(searchQuery.lowercased().trimmingCharacters(in: .whitespaces)) {
+                                TaskRow(list: list, editor: .constant(false), taskViewModel: taskViewModel, isResponder: .constant(false), disableEditing: true)
+                            }
+                        }
+                    }
+                }
+            }
+            
+            
+        }
+        .background(Color.white)
     }
 }

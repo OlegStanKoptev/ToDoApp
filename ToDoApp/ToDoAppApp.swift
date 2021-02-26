@@ -13,7 +13,7 @@ struct ToDoAppApp: App {
         WindowGroup {
             NavigationView {
                 HomeView()
-                    .environmentObject(TasksListProvider())
+                    .environmentObject(AppContext())
             }
         }
     }

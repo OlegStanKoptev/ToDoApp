@@ -26,12 +26,13 @@ struct CustomNavigationBarWithSearch: View {
     
     var body: some View {
         VStack(spacing: 13) {
-            if !enteringQuery {
+            if !enteringQuery && searchQuery.isEmpty {
                 HStack {
                     Spacer()
                     Button(action: {}, label: {
                         Text("Edit")
                     })
+                    .opacity(0)
                 }
                 .transition(.opacity)
                 .padding(.horizontal, 16)
@@ -56,7 +57,7 @@ struct CustomNavigationBarWithSearch: View {
                         }
                     )
                     .opacity(
-                        enteringQuery ? 1 :
+                        enteringQuery || !searchQuery.isEmpty ? 1 :
                             1 - Double(navBarBackgroundOpacity)
                     )
             }

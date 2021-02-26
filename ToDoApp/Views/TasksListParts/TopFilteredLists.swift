@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct TopFilteredLists: View {
-    @EnvironmentObject var provider: TasksListProvider
+    @EnvironmentObject var context: AppContext
     var todayIconName: Int {
         Calendar.current.dateComponents([.day], from: Date()).day!
     }
     var body: some View {
-        VStack(spacing: 16) {
-            HStack(spacing: 16) {
-                FilteredTasksButton(label: "Today", icon: "\(todayIconName).square", color: .blue, counter: 0)
-                FilteredTasksButton(label: "Scheduled", icon: "calendar", color: .red, counter: 0)
-            }
-            FilteredTasksButton(label: "All", icon: "tray.fill", color: .grey, counter: provider.overallCount)
-        }
+//        VStack(spacing: 16) {
+//            HStack(spacing: 16) {
+//                FilteredTasksButton(label: "Today", icon: "\(todayIconName).square", color: .blue, counter: 0)
+//                FilteredTasksButton(label: "Scheduled", icon: "calendar", color: .red, counter: 0)
+//            }
+            FilteredTasksButton(label: "All", icon: "tray.fill", color: .gray, counter: context.tasksCount)
+//        }
     }
 }
 
@@ -27,6 +27,6 @@ struct TopFilteredLists: View {
 struct TopFilteredLists_Previews: PreviewProvider {
     static var previews: some View {
         TopFilteredLists()
-            .environmentObject(TasksListProvider())
+            .environmentObject(AppContext())
     }
 }

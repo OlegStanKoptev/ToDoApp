@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct FilteredTasksView: View {
+    @EnvironmentObject var context: AppContext
     @Environment(\.presentationMode) var presentationMode
-    @State var list: TasksList
+    var title: String
     
     var body: some View {
-        TasksView(list: list)
-            .accentColor(Color(list.color.rawValue))
+        TasksView(list: TasksListViewModel(title: title))
     }
 }
 
 struct FilteredTasksView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            FilteredTasksView(list: TasksList(icon: "person", title: "Title", color: .blue, tasks: []))
+            FilteredTasksView(title: "title")
         }
     }
 }

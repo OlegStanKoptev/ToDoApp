@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct FilteredTasksButton: View {
+    @EnvironmentObject var context: AppContext
     var label: String
     var icon: String
-    var color: TasksList.ListColor
+    var color: TasksListViewModel.ListColor
     var counter: Int
     @State var activeTransition = false
     var body: some View {
-        NavigationLink(
-            destination: FilteredTasksView(list: TasksList(icon: icon, title: label, color: color, tasks: [])),
-            isActive: $activeTransition,
-            label: {
+//        NavigationLink(
+//            destination: FilteredTasksView(title: label).environmentObject(context),
+//            isActive: $activeTransition,
+//            label: {
+        Button(action: {}, label: {
                 VStack(alignment: .leading, spacing: 8) {
                     HStack {
                         Circle()
@@ -42,7 +44,7 @@ struct FilteredTasksButton: View {
                 .frame(height: 82)
             }
         )
-        .buttonStyle(NeumorphicButtonStyle(transitioned: $activeTransition))
+        .buttonStyle(ListsButtonStyle(transitioned: $activeTransition, style: .separate))
     }
 }
 

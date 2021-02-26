@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct MyLists: View {
-    @EnvironmentObject var provider: TasksListProvider
+struct MyLists: View {    
+    @EnvironmentObject var context: AppContext
     var body: some View {
         VStack(spacing: 0) {
             HStack {
@@ -21,27 +21,13 @@ struct MyLists: View {
             .padding(.bottom, 8)
             
             VStack(spacing: 0) {
-                ForEach(0..<provider.lists.count) { listIndex in
-//                    VStack(spacing: 0) {
-//                        Spacer(minLength: 0)
-//                        TasksListRow(index: listIndex, list: provider.lists[listIndex])
-//                            .padding(.horizontal, 12)
-//                        Spacer(minLength: 0)
-//                        if (listIndex < provider.lists.count - 1) {
-//                            Divider()
-//                                .padding(.leading, 56)
-//                        }
-//                    }
-//                    .frame(height: 54)
-//                    .background(Color.white)
-//                    .cornerRadius(
-//                        listIndex == 0 || listIndex == provider.lists.count - 1 ? 10 : 0,
-//                        corners:
-//                            listIndex == 0 ? [.topLeft, .topRight] :
-//                            listIndex == provider.lists.count - 1 ? [.bottomLeft, .bottomRight] :
-//                            []
-//                    )
-                    TasksListRow(index: listIndex, overallQuantity: provider.lists.count, list: provider.lists[listIndex])
+                ForEach(0..<context.lists.count) { listIndex in
+                    TasksListRow(
+                        list: context.lists[listIndex],
+                        style: listIndex == 0 ? .top :
+                            listIndex < context.lists.count - 1 ? .middle :
+                            .bottom)
+                        .environmentObject(context)
                 }
             }
         }
@@ -51,6 +37,7 @@ struct MyLists: View {
 struct MyLists_Previews: PreviewProvider {
     static var previews: some View {
         MyLists()
-            .environmentObject(TasksListProvider())
+            .environmentObject(AppContext())
+            .background(Color.gray)
     }
 }

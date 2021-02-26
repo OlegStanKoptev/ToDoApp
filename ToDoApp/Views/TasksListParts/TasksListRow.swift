@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct TasksListRow: View {
+    @EnvironmentObject var context: AppContext
     @State var activeTransition = false
-    var index: Int
-    var overallQuantity: Int
-    var list: TasksList
+    var list: TasksListViewModel
+    var style: TasksListViewModel.InsetGroupedListItemStyle
     var body: some View {
         NavigationLink(
-            destination: TasksView(list: list)
-                .accentColor(Color(list.color.rawValue)),
+            destination: TasksView(list: list).environmentObject(context),
             isActive: $activeTransition,
             label: {
                 VStack(spacing: 0) {
@@ -35,7 +34,7 @@ struct TasksListRow: View {
                             .foregroundColor(.primary)
                             .padding(.leading, 12)
                         Spacer(minLength: 0)
-                        Text("\(list.quantity)")
+                        Text("\(list.count)")
                             .font(.system(size: 17, weight: .regular, design: .rounded))
                             .foregroundColor(.secondary)
                             .padding(.trailing, 9)
@@ -49,7 +48,7 @@ struct TasksListRow: View {
                     .padding(.horizontal, 12)
                     
                     Spacer(minLength: 0)
-                    if (index < overallQuantity - 1) {
+                    if (style == .top || style == .middle) {
                         Divider()
                             .padding(.leading, 56)
                     }
@@ -57,12 +56,13 @@ struct TasksListRow: View {
                 .frame(height: 54)
             }
         )
-        .buttonStyle(NeumorphicButtonStyle(transitioned: $activeTransition, index: Double(index) / Double(overallQuantity - 1)))
+        .buttonStyle(ListsButtonStyle(transitioned: $activeTransition, style: style))
     }
 }
 
 struct RemindersListRow_Previews: PreviewProvider {
     static var previews: some View {
-        TasksListRow(index: 0, overallQuantity: 5, list: TasksList(icon: "house", title: "Title", color: .blue, tasks: []))
+        TasksListRow(list: TasksListViewModel(title: "Title"), style: .middle)
+            .environmentObject(AppContext())
     }
 }

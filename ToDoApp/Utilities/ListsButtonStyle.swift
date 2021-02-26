@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct NeumorphicButtonStyle: ButtonStyle {
+struct ListsButtonStyle: ButtonStyle {
     @Binding var transitioned: Bool
     var backgroundColor: Color = .white
-    var overlayColor: Color = .init(.systemGray4)
-    var index: Double = -1
+    var overlayColor: Color = .init(.systemGray3)
+    var style: TasksListViewModel.InsetGroupedListItemStyle
 
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
@@ -23,18 +23,12 @@ struct NeumorphicButtonStyle: ButtonStyle {
                         .transition(.opacity)
                 }
                 .cornerRadius(
-                    index == 0 || index == 1 || index == -1 ? 10 : 0,
+                    10,
                     corners:
-                        index == -1 ? .allCorners :
-                        index == 0 ? [.topLeft, .topRight] :
-                        index == 1 ? [.bottomLeft, .bottomRight] : []
+                        style == .separate ? .allCorners :
+                        style == .top ? [.topLeft, .topRight] :
+                        style == .bottom ? [.bottomLeft, .bottomRight] : []
                 )
             )
-    }
-}
-
-struct NoneButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
     }
 }

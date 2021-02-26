@@ -10,37 +10,55 @@ import SwiftUI
 struct CustomScrollView<Content: View>: View {
     let axes: Axis.Set
     let showsIndicators: Bool
-    let offsetChanged: (CGPoint) -> Void
+    let topOffsetChanged: (CGFloat) -> Void
+    let bottomOffsetChanged: (CGFloat) -> Void
     let content: Content
 
     init(
         axes: Axis.Set = .vertical,
         showsIndicators: Bool = true,
-        offsetChanged: @escaping (CGPoint) -> Void = { _ in },
+        topOffsetChanged: @escaping (CGFloat) -> Void = { _ in },
+        bottomOffsetChanged: @escaping (CGFloat) -> Void = { _ in },
         @ViewBuilder content: () -> Content
     ) {
         self.axes = axes
         self.showsIndicators = showsIndicators
-        self.offsetChanged = offsetChanged
+        self.topOffsetChanged = topOffsetChanged
+        self.bottomOffsetChanged = bottomOffsetChanged
         self.content = content()
     }
     
     var body: some View {
-        SwiftUI.ScrollView(axes, showsIndicators: showsIndicators) {
-            GeometryReader { geometry in
-                Color.clear.preference(
-                    key: ScrollOffsetPreferenceKey.self,
-                    value: geometry.frame(in: .named("scrollView")).origin
-                )
+        ScrollView(axes, showsIndicators: showsIndicators) {
+            GeometryReader { geometry1 in
+                Color.clear
+                    .preference(
+                        key: ScrollOffsetTopPreferenceKey.self,
+                        value: geometry1.frame(in: .named("scrollView")).origin.y
+                    )
             }.frame(width: 0, height: 0)
+            .onPreferenceChange(ScrollOffsetTopPreferenceKey.self, perform: topOffsetChanged)
             content
+            
+            GeometryReader { geometry2 in
+                Color.clear
+                    .preference(
+                        key: ScrollOffsetBottomPreferenceKey.self,
+                        value: geometry2.frame(in: .named("scrollView")).origin.y
+                    )
+            }.frame(width: 0, height: 0)
+            .onPreferenceChange(ScrollOffsetBottomPreferenceKey.self, perform: bottomOffsetChanged)
         }
         .coordinateSpace(name: "scrollView")
-        .onPreferenceChange(ScrollOffsetPreferenceKey.self, perform: offsetChanged)
     }
 }
 
-private struct ScrollOffsetPreferenceKey: PreferenceKey {
-    static var defaultValue: CGPoint = .zero
-    static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) {}
+private struct ScrollOffsetTopPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {}
+}
+
+private struct ScrollOffsetBottomPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {}
 }
