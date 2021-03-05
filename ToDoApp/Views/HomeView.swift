@@ -124,15 +124,17 @@ struct HomeView_Previews: PreviewProvider {
         40, 59, 72, 89, 100, 114, 125, 156, 167, 198, 214, 226, 238, 254, 312, 324, 336, 353, 369, 382, 436, 490, 545, 599, 653, 708, 728, 750, 762
     ]
     static var previews: some View {
-        ZStack {
-            HomeView()
-                .environmentObject(AppContext())
+        NavigationView {
+            ZStack {
+                HomeView()
+                    .environmentObject(AppContext())
 //            ForEach(verticalLines, id: \.self) { line in
 //                Divider()
 //                    .frame(width: UIScreen.main.bounds.width)
 //                    .position(x: UIScreen.main.bounds.width / 2,
 //                              y: CGFloat(line - 40))
 //            }
+            }
         }
     }
 }
