@@ -98,6 +98,7 @@
 		DC85643625DFBF750024F8AF /* CustomNavigationBarWithSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBarWithSearch.swift; sourceTree = "<group>"; };
 		DC86A03525DFD78E00530F1B /* ListsButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsButtonStyle.swift; sourceTree = "<group>"; };
 		DC8B14CA25DDB94A0023719A /* FilteredTasksButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredTasksButton.swift; sourceTree = "<group>"; };
+		DCF5EF0425F1CA58008B342C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DCFB3CD225E294A900CC6682 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		DCFB3CD525E2968400CC6682 /* TasksListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListViewModel.swift; sourceTree = "<group>"; };
 		DCFB3CD825E297B200CC6682 /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContext.swift; sourceTree = "<group>"; };
@@ -159,6 +160,7 @@
 		DC82740825DC6DAE009FFE12 = {
 			isa = PBXGroup;
 			children = (
+				DCF5EF0425F1CA58008B342C /* README.md */,
 				DC82741325DC6DAE009FFE12 /* ToDoApp */,
 				DC1C452825E9086200F9E2E7 /* NewReminderFromSharedText */,
 				DC82741225DC6DAE009FFE12 /* Products */,
